@@ -1,0 +1,21 @@
+from itertools import permutations
+
+def is_valid(word):
+    vowels = "AEIOUYaeiouy"
+    for i in range(len(word) - 1):
+        if (word[i] in vowels and word[i+1] in vowels) or (word[i] not in vowels and word[i+1] not in vowels):
+            return False
+    return True
+
+def unique_permutations(word):
+    all_perms = set([''.join(p) for p in permutations(word)])
+    valid_perms = [p for p in all_perms if is_valid(p)]
+    return valid_perms
+
+word = "Metal"
+result = unique_permutations(word)
+print(f"Valid permutations of '{word}':")
+for r in result:
+    print(r)
+
+print(f"Total valid permutations: {len(result)}")
